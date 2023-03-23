@@ -1,10 +1,8 @@
 #import wordsz
 from random import randint
-import replit
 import os
 def clear():
     os.system('cls')
-    replit.clear()
 def stingconv(listz):
     global stringz,hidden
     stringz=''
@@ -134,4 +132,3 @@ def hangman():
             elif 2>angercount>0:
                 print('that was ight')
             break
-hangman()
