@@ -1,0 +1,2 @@
+def PythonWrite():
+    print('rip')
