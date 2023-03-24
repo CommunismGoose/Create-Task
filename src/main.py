@@ -5,15 +5,16 @@ from RPS import *
 from checkers import *
 from PythonWrite import *
 from mancala import *
+from hangman import *
 play=True
 #defining the functions
 def clear(gamename):
     os.system('cls')
-    print(f'Game Catalog > {gamename}\n')
+    print('Game Catalog >' + gamename +'\n')
 #core gameplay loop
 while play==True:
     clear('')
-    gamechoice=int(input('choose a game from the following list by typing its number\n\n1:Tic-Tac-Toe\n2:Connect 4\n3:Rock-Paper-Sciscors\n4:Checkers\n5: Fractal Game\n6:Python Write\n7:Mancala\n8:Stop the program\n'))
+    gamechoice=int(input('choose a game from the following list by typing its number\n\n1:Tic-Tac-Toe\n2:Connect 4\n3:Rock-Paper-Sciscors\n4:Checkers\n5:Fractal Game\n6:Python Write\n7:Mancala\n8:Hangman\n9:Stop the program\n'))
     if gamechoice==1:
         clear('Tic-Tac-Toe')
         tictactoe()
@@ -24,16 +25,19 @@ while play==True:
         clear('Rock-Paper-Sciscors')
         rps()
     if gamechoice==4:
-        clear()
+        clear('Checkers')
         checkers()
     if gamechoice==5:
-        clear('Checkers')
+        clear('fractal game')
         print('god pls help the man who is going to write this code')
     if gamechoice==6:
         clear('Python Write')
         PythonWrite()
     if gamechoice==7:
-        clear()
+        clear('Mancala')
         mancala()
     if gamechoice==8:
+        clear('Hangman')
+        hangman()
+    if gamechoice==9:
         break

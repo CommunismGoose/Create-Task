@@ -29,4 +29,3 @@ def tictactoe(): #plan is to make it so that the user input changes the move to 
                     break
         else:
             print('that is not a legal move go again')
-tictactoe()

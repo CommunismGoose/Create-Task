@@ -17,4 +17,3 @@ def rps():#plan to make cleaner later
 				v=1
 		if input('would you like to play again? y/n\n').lower() == 'n':
 			break
-rps()

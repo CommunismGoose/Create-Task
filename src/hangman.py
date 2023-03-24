@@ -1,4 +1,4 @@
-#import wordsz
+from wordsz import *
 from random import randint
 import os
 def clear():
@@ -19,9 +19,8 @@ def hangman():
             clear()
             break
         elif temp == 'n':
-            print('L cant do this rn')
+            word = lotsofwords[randint(1,len(lotsofwords))]
             break
-            #word = lotsofwords[randint(1,len(lotsofwords))]
         else:
             if angercount == 1:
                 clear()
@@ -44,16 +43,12 @@ def hangman():
     wrong = 0
     numbercorrect=0
     for i in range(len(word)):
-        hidden.append('_ ')
+        hidden.append(' _ ')
     stingconv(hidden)
     print(f'______\n|\n|\n|\nYour word is as follows\n{stringz}')
     while True:
         usermove = input('what letter would you like to guess, you may try to guess the word if you would like\n').lower()
         place = 0
-        #for future refrence
-        # if len(usermove)>1:
-        #     if usermove in word:
-                
         if len(usermove)<len(word):
             temp=numbercorrect
             for letter in word:
@@ -110,20 +105,17 @@ def hangman():
                 print(f'______\n|   [OwO]\n|    /|\ \n|    /\ \n|   o\n{stringz}\n your wrong letters are as follows\n{wrongletters}\n')
             if wrong == 11:
                 stingconv(hidden)
-                print(f'______\n|   [OwO]\n|    /|\ \n|    /\ \n|   o o\n{stringz}\n your wrong letters are as follows\n{wrongletters}\n Your word was{word}\n')
+                print(f'______\n|   [OwO]\n|    /|\ \n|    /\ \n|   o o\n{stringz}\n your wrong letters are as follows\n{wrongletters}\n Your word was {word}\n')
                 if angercount >=2:
                     print('Maybe shoul\'ve just type Y or N.... huh')
                 break
         else:
             if wrong == 9:
                 stingconv(hidden)
-                print(f'______\n|   [OwO]\n|    /|\ \n|    /\ \n{stringz}\n your wrong letters are as follows\n{wrongletters}\nyou have failed the game. \n Your word was{word}')
+                print(f'______\n|   [OwO]\n|    /|\ \n|    /\ \n{stringz}\n your wrong letters are as follows\n{wrongletters}\nyou have failed the game. \n Your word was {word}')
                 if angercount >=2:
                     print('Maybe shoul\'ve just type Y or N bruh')
                 break
-        
-
-
         stingconv(hidden)
         if len(stringz)==len(word):
             print('you win')
