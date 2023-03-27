@@ -1,8 +1,10 @@
 import os
-#this is a unfinished project that is heavily bugged
+import time
+#there is currently no win conditions, so therefore the game is still not finished
 mpos=[4,4,4,4,4,4,0,4,4,4,4,4,4,0] #list of values
 lsp='               ' #a long space
 def clear(gamename):
+    time.sleep(.6)
     os.system('cls')
     print(f'Game Catalog > {gamename}\n')
 def printboard():
@@ -22,39 +24,44 @@ def mancala():
     playerturn=False
     while True:
         playerturn=not playerturn
-        print(playerturn)
         printboard()
-        if playerturn==True:
-            while True:
-                usermove=int(input('please input your move, 1 to 6 starting bottom left going counter clockwise\n'))-1#gets pos of move
-                if usermove>5 or mpos[usermove]==0:
-                    print('please select a valid option\n')
-                else:
-                    break
-            if usermove<6 and mpos[usermove]!=0: #if the move is legal
-                temp=mpos[usermove]#temp variable is set to the position
-                mpos[usermove]=0
-                i=usermove+1
-                while temp!=0:#while hand isnt equal to zero
-                    if i!=13: #if pos isnt 13
-                        temp-=1 #amount in hands minus
-                        mpos[i]+=1 #amount in position plus
-                        print(f'add1, {temp} left in hand')
-                        printboard()
-                    if temp==0 and i!=13 and i!=6 and mpos[i]>1: 
-                        #if head is equal to zero, and we are no tin endgoal and current pos value is not zero
-                        temp=mpos[i] #hand equal value in square
-                        mpos[i]=0 #square value = 0
-                        print(f'pickup {temp} amount')
-                        printboard()
-                    i+=1 #current pos 1 higher
-                    if i==14: #if current pos is out of index
-                        i=0 #equal it to zero
-                        print('reset')
-        while True:
+        anothermove=True
+        while anothermove==True:
+            anothermove=False
+            if playerturn==True:
+                while True:
+                    usermove=int(input('PLAYER 1:please input your move, 1 to 6 starting bottom left going counter clockwise\n'))-1#gets pos of move
+                    if usermove>5 or mpos[usermove]==0:
+                        print('please select a valid option\n')
+                    else:
+                        break
+                if usermove<6 and mpos[usermove]!=0: #if the move is legal
+                    temp=mpos[usermove]#temp variable is set to the position
+                    mpos[usermove]=0
+                    i=usermove+1
+                    while temp!=0:#while hand isnt equal to zero
+                        if i!=13: #if pos isnt 13
+                            temp-=1 #amount in hands minus
+                            mpos[i]+=1 #amount in position plus
+                            clear('Mancala')
+                            printboard()
+                        if temp==0 and i!=13 and i!=6 and mpos[i]>1: 
+                            #if head is equal to zero, and we are no tin endgoal and current pos value is not zero
+                            temp=mpos[i] #hand equal value in square
+                            mpos[i]=0 #square value = 0
+                            clear('Mancala')
+                            printboard()
+                        if temp==0 and i==6:
+                            anothermove=True
+                        i+=1 #current pos 1 higher
+                        if i==14: #if current pos is out of index
+                            i=0 #equal it to zero
+        anothermove=True
+        while anothermove==True:
+            anothermove=False
             if playerturn==False:
                 while True:
-                    usermove=int(input('please input your move, 7 to 12 starting bottom left going counter clockwise\n'))#gets pos of move
+                    usermove=int(input('PLAYER 2: please input your move, 7 to 12 starting bottom left going counter clockwise\n'))#gets pos of move
                     if usermove<7 or mpos[usermove]==0:
                         print('please select a valid option\n')
                     else:
@@ -63,24 +70,20 @@ def mancala():
                     temp=mpos[usermove]#temp variable is set to the position
                     mpos[usermove]=0
                     i=usermove+1
-                    print('test 1')
                     while temp!=0:#while hand isnt equal to zero
-                        print('test 2')
                         if i!=6: #if pos isnt 6
                             temp-=1 #amount in hands minus
                             mpos[i]+=1 #amount in position plus
-                            print(f'add1, {temp} left in hand')
+                            clear('Mancala')
                             printboard()
                         if temp==0 and i!=13 and i!=6 and mpos[i]>1: 
                             #if head is equal to zero, and we are no tin endgoal and current pos value is not zero
                             temp=mpos[i] #hand equal value in square
                             mpos[i]=0 #square value = 0
-                            print(f'pickup {temp} amount')
+                            clear('Mancala')
                             printboard()
+                        if temp==0 and i==13:
+                            anothermove=True
                         i+=1 #current pos 1 higher
                         if i==14: #if current pos is out of index
                             i=0 #equal it to zero
-                            print('reset')
-                    if temp==0:
-                        break
-mancala()
