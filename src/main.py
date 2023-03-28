@@ -1,4 +1,5 @@
 import os
+import time
 from ttt import *
 from connect4 import *
 from RPS import *
@@ -12,8 +13,12 @@ def clear(gamename):
     os.system('cls')
     print('Game Catalog >' + gamename +'\n')
 #core gameplay loop
+x=0
 while play==True:
-    clear('')
+    print('please play this game of tic tac toe twice so that you may understand how to user terminal for our games')
+    time.sleep(2)
+    tictactoe()
+    tictactoe()
     gamechoice=int(input('choose a game from the following list by typing its number\n\n1:Tic-Tac-Toe\n2:Connect 4\n3:Rock-Paper-Sciscors\n4:Checkers\n5:Fractal Game\n6:Python Write\n7:Mancala\n8:Hangman\n9:Stop the program\n'))
     if gamechoice==1:
         clear('Tic-Tac-Toe')
