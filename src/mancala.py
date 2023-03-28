@@ -1,6 +1,5 @@
 import os
 import time
-#there is currently no win conditions, so therefore the game is still not finished
 mpos=[4,4,4,4,4,4,0,4,4,4,4,4,4,0] #list of values
 lsp='               ' #a long space
 def clear(gamename):
@@ -10,8 +9,20 @@ def clear(gamename):
 def printboard():
     mboard=(f'    {mpos[12]} {mpos[11]} {mpos[10]} {mpos[9]} {mpos[8]} {mpos[7]}\n {mpos[13]}{lsp}{mpos[6]}\n    {mpos[0]} {mpos[1]} {mpos[2]} {mpos[3]} {mpos[4]} {mpos[5]}\n\n')
     print(mboard)
+wins=False
+def wincheck():
+    global wins
+    if mpos[12]+mpos[11]+mpos[10]+mpos[9]+mpos[8]+mpos[7]==0 or mpos[0]+mpos[1]+mpos[2]+mpos[3]+mpos[4]+mpos[5]==0 or mpos[6]>=25 or mpos[13]>=25 :
+        wins=True
+        if wins==True:
+            print(f'game has ended with player 1 ending with {mpos[6]} and player 2 ending with {mpos[13]} ')
+            if mpos[13]>mpos[6]:
+                print('Player 2 wins!')
+            elif mpos[13]==mpos[6]:
+                print('Tie!')
+            else:
+                print('Player 1 wins!')
 def mancala():
-    mboard=(f'    {mpos[0]} {mpos[1]} {mpos[2]} {mpos[3]} {mpos[4]} {mpos[5]}\n {mpos[6]}{lsp}{mpos[13]}\n    {mpos[7]} {mpos[8]} {mpos[9]} {mpos[10]} {mpos[11]} {mpos[12]}')
     print('''The rules are as follows
     1:You\'re starting move may only be on your side of the board
     2:You must drop a piece into every hole/square that you pass over.
@@ -23,6 +34,9 @@ def mancala():
     ''')
     playerturn=False
     while True:
+        wincheck()
+        if wins==True:
+            break
         playerturn=not playerturn
         printboard()
         anothermove=True
@@ -53,6 +67,9 @@ def mancala():
                             printboard()
                         if temp==0 and i==6:
                             anothermove=True
+                            wincheck()
+                            if wins==True:
+                                break
                         i+=1 #current pos 1 higher
                         if i==14: #if current pos is out of index
                             i=0 #equal it to zero
@@ -84,6 +101,9 @@ def mancala():
                             printboard()
                         if temp==0 and i==13:
                             anothermove=True
+                            wincheck()
+                            if wins==True:
+                                break
                         i+=1 #current pos 1 higher
                         if i==14: #if current pos is out of index
                             i=0 #equal it to zero
