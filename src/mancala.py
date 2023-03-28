@@ -23,7 +23,7 @@ def wincheck():
             else:
                 print('Player 1 wins!')
 def mancala():
-    print('''The rules are as follows
+    input('''The rules are as follows
     1:You\'re starting move may only be on your side of the board
     2:You must drop a piece into every hole/square that you pass over.
     3:If the hole that you drop your last piece into has pieces in it you must pick it up and continue
@@ -31,6 +31,7 @@ def mancala():
     5:If you drop your final piece into your goal on the end you gain another turn
     6:You win if you have the most pieces in your goal at the end of the game
     7:The game ends if the board meets any of these conditions: There are no possible moves for one of the players, All the pieces on the board are in endgoals, or If the a draw is agreed upon.
+    Type ok when you understand
     ''')
     playerturn=False
     while True:
@@ -38,6 +39,7 @@ def mancala():
         if wins==True:
             break
         playerturn=not playerturn
+        clear('Mancala')
         printboard()
         anothermove=True
         while anothermove==True:
