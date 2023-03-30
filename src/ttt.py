@@ -27,7 +27,6 @@ def tictactoe():
     board=[' ',' ',' ',' ',' ',' ',' ',' ',' ']
     allmoves=[]
     totalmoves=0
-    print(len(board))
     while True:
         playermove=int(input(f'please input your move\nthe following is the board\n{board[0]}|{board[1]}|{board[2]}\n-----\n{board[3]}|{board[4]}|{board[5]}\n-----\n{board[6]}|{board[7]}|{board[8]}\n'))-1
         if playermove not in allmoves:
