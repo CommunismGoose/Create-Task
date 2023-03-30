@@ -3,7 +3,7 @@ import time
 mpos=[4,4,4,4,4,4,0,4,4,4,4,4,4,0] #list of values
 lsp='               ' #a long space
 def clear(gamename):
-    time.sleep(.6)
+    time.sleep(.4)
     os.system('cls')
     print(f'Game Catalog > {gamename}\n')
 def printboard():
@@ -123,4 +123,4 @@ def mancala():
                         if i==14: #if current pos is out of index
                             i=0 #equal it to zero
                 leaving()
-mancala()
+        leaving()
