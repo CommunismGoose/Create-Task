@@ -22,6 +22,10 @@ def wincheck():
                 print('Tie!')
             else:
                 print('Player 1 wins!')
+def leaving():
+    global leave
+    if leave:
+        break
 def mancala():
     input('''The rules are as follows
     1:You\'re starting move may only be on your side of the board
@@ -33,6 +37,7 @@ def mancala():
     7:The game ends if the board meets any of these conditions: There are no possible moves for one of the players, All the pieces on the board are in endgoals, or If the a draw is agreed upon.
     Type ok when you understand
     ''')
+    leave=False
     playerturn=False
     while True:
         wincheck()
@@ -46,11 +51,15 @@ def mancala():
             anothermove=False
             if playerturn==True:
                 while True:
-                    usermove=int(input('PLAYER 1:please input your move, 1 to 6 starting bottom left going counter clockwise\n'))-1#gets pos of move
+                    usermove=int(input('PLAYER 1:please input your move, 1 to 6 starting bottom left going counter clockwise\nYou may also type 0 to quit\n'))-1#gets pos of move
+                    if usermove==-1:
+                        leave=True
+                        break
                     if usermove>5 or mpos[usermove]==0:
                         print('please select a valid option\n')
                     else:
                         break
+                leaving()
                 if usermove<6 and mpos[usermove]!=0: #if the move is legal
                     temp=mpos[usermove]#temp variable is set to the position
                     mpos[usermove]=0
@@ -76,11 +85,15 @@ def mancala():
                         if i==14: #if current pos is out of index
                             i=0 #equal it to zero
         anothermove=True
+        leaving()
         while anothermove==True:
             anothermove=False
             if playerturn==False:
                 while True:
-                    usermove=int(input('PLAYER 2: please input your move, 7 to 12 starting bottom left going counter clockwise\n'))#gets pos of move
+                    usermove=int(input('PLAYER 2: please input your move, 7 to 12 starting bottom left going counter clockwise\nYou may type 0 to leave\n'))#gets pos of move
+                    if usermove==0:
+                        leave=True
+                        break
                     if usermove<7 or mpos[usermove]==0:
                         print('please select a valid option\n')
                     else:
@@ -109,3 +122,5 @@ def mancala():
                         i+=1 #current pos 1 higher
                         if i==14: #if current pos is out of index
                             i=0 #equal it to zero
+                leaving()
+mancala()
