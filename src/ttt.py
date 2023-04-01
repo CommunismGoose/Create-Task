@@ -1,50 +1,64 @@
 from random import randint
 import os
-import time
-def clear(gamename):
-    os.system('cls')
-    print(f'Game Catalog > {gamename}\n')
-winningcombos=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
-usermoves=[]
-computermoves=[]
-def wincheck():
-    global usermoves,computermoves,u,o
-    for i in winningcombos:
-        u=0;o=0
-        for b in i:
-            if b in usermoves:
-                u+=1
-            if b in computermoves:
-                o+=1
-        if u==2:
-            print('You win!')
-            break
-        if o==2:
-            print('Computer wins!')
-            break
+
+def clear():
+    os.system("cls")
+    print("Game Catalog > Tic-Tac-Toe\n\n")
+
+def showtttboard(tttboard):
+    clear()
+    cb = [[" ","X","O"][x] for x in tttboard]
+    print(" "+cb[0]+" | "+cb[1]+" | "+cb[2])
+    print("-----------")
+    print(" "+cb[3]+" | "+cb[4]+" | "+cb[5])
+    print("-----------")
+    print(" "+cb[6]+" | "+cb[7]+" | "+cb[8] + "\n")
+
+def win(tb):
+    wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+    for w in wins:
+        look = tb[w[0]]
+        if look == tb[w[1]] == tb[w[2]]:
+            if look != 0:
+                return look
+    return 0
+
 def tictactoe():
-    global usermoves,computermoves
-    board=[' ',' ',' ',' ',' ',' ',' ',' ',' ']
-    allmoves=[]
-    totalmoves=0
-    while True:
-        playermove=int(input(f'please input your move\nthe following is the board\n{board[0]}|{board[1]}|{board[2]}\n-----\n{board[3]}|{board[4]}|{board[5]}\n-----\n{board[6]}|{board[7]}|{board[8]}\n'))-1
-        if playermove not in allmoves:
-            usermoves.append(playermove)
-            board[playermove]='X'
-            totalmoves+=1
-            wincheck()
-            if u>=2:
+    playagain = True
+    while playagain:
+        ticb = [0,0,0,0,0,0,0,0,0]
+        showtttboard(ticb)
+
+        while True:
+            pin = 0
+            inv = True
+            while inv:
+                pin = input("Where? (1 - 9)\n")
+                if pin.isnumeric():
+                    pin = int(pin[0]) - 1
+                    if pin >= 0 and pin < 9:
+                        if ticb[pin] == 0:
+                            inv = False
+
+            ticb[pin] = 1
+            showtttboard(ticb)
+            if win(ticb) == 1:
+                print("You won!")
                 break
-            if totalmoves==9:
-                print('Tie')
-            while True:
-                compmove=randint(0,8)
-                if compmove not in allmoves:
-                    computermoves.append(compmove)
-                    board[compmove]='O'
-                    if u>=2:
-                        break
-        else:
-            print('please select a valid move!')
+            if not 0 in ticb:
+                print("It's a draw!")
+                break
+            
+            cin = pin
+            while ticb[cin] != 0:
+                cin = randint(0,8)
+            
+            ticb[cin] = 2
+            showtttboard(ticb)
+            if win(ticb) == 2:
+                print("You lost...")
+                break
+
+        playagain = input("Play again?\n").lower() in ["y", "yes"]
+
 tictactoe()
