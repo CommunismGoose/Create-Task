@@ -31,14 +31,13 @@ def tictactoe():
 
         while True:
             pin = 0
-            inv = True
-            while inv:
+            while True:
                 pin = input("Where? (1 - 9)\n")
                 if pin.isnumeric():
                     pin = int(pin[0]) - 1
                     if pin >= 0 and pin < 9:
                         if ticb[pin] == 0:
-                            inv = False
+                            break
 
             ticb[pin] = 1
             showtttboard(ticb)
