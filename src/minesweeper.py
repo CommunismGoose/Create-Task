@@ -58,7 +58,7 @@ def fill(posx, posy, dimx, dimy, danger, btn, safeopened):
     d = danger[posy][posx]
     
     btn[index]["text"] = "" if d==0 else d
-    btn[index]["background"] = ["lightgoldenrodyellow", "lightgoldenrod", "orange", "lightcoral", "IndianRed1", "PaleVioletRed1", "MediumOrchid1", "MediumPurple1"][d]
+    btn[index]["background"] = ["lightgoldenrodyellow", "lightgoldenrod", "orange", "lightcoral", "IndianRed1", "PaleVioletRed1", "MediumOrchid1", "MediumPurple1", "alice blue"][d]
     btn[index]["state"] = tk.DISABLED
     safeopened[0] += 1
     
