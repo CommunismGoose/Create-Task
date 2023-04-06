@@ -10,14 +10,14 @@ Ultimate Tic-Tac-Toe - Active Development,
 
 Connect 4 - Active Development,
 
-Rock Paper Sciscors - Completed,
-
-Checkers - Not Started,
+Rock Paper Sciscors - Done,
 
 Minesweeper - Done,
 
-Python Write - Not Started,
+Python Write - Done,
 
 Mancala - Done,
 
-Hangman - Done.
+Hangman - Done,
+
+21 Blackjack - Done.
