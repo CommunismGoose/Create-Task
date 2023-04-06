@@ -1,0 +1,64 @@
+#import to note that this is more like a regular casino where everycard is at play at all times, i might change it to be where
+#it is just one deck like in more regular blackjack but this would be a bit of work so i prob wont do that for a while
+#also its imporant to note that as im writing this its 1:14 am so the code wont be perfect that why im heavily commenting so its easier to fix
+import os
+from random import randint
+#clear function
+def clear(gamename):
+    os.system('cls')
+    print('Game Catalog > 21 BlackJack')
+#determines a loss from going over 21 and makes aces worth less if you do go over, also just gives you a card
+def calcvalue(theguy):
+    global playerhand, dealerhand
+    totalmoves=0
+    for i in theguy(): 
+        if i == 11:
+            acestorage.append(i) #if there is an ace saves the index of it
+        totalmoves+=i  #calcuates the total value of their hand
+def hit(whomoving):
+    #defining variables
+    global cards
+    acestorage=[]
+    totalmoves=0
+    whomoving.append(cards[randint(1,52)])#give them a new card
+    calcvalue(whomoving)
+    if totalvalue>21:  #if their hand is bust
+        if len(acestorage)>0:  #if they have an ace in their hand change it to a 1
+            for i in acestorage:
+                playerhand[i]==1
+                totalmoves-=10
+                if totalvalue<21: #only changes as many aces as is needed
+                    break
+    if totalvalue<21: #if they hand still bust
+        print('You lose, sorry')
+        return True  #they lose and we return true
+    else:
+        return False  #else they still in play with one new card
+def blackjack(): 
+    global cards
+    #defining variables
+    cards=[]
+    playerhand=[]
+    dealerhand=[]
+    #Creating a list of all cards
+    for i in range (1,11):
+        i+=1
+        if i==10:
+            for u in range(16):
+                cards.append(i)
+        if i!=10:
+            for u in range(4):
+                cards.append(i)
+    #Adding cards into player's hand
+    for i in range(2):
+        playerhand.append(cards[randint(1,52)])
+        dealerhand.append(cards[randint(1,52)])
+    #core gameplay loop
+    while True:
+        usermove=input(f'Your hand is {playerhand}\nand the dealers hand is {dealerhand}\nIf you would like to hit please type \'Hit\'\nIf you would like to stand please type \'Stand\'\n').lower()
+        if usermove=='hit':
+            if hit(playerhand):
+                print('Im sorry you have lost')
+blackjack()
+
+    
