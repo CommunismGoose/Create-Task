@@ -31,52 +31,54 @@ def hit(whomoving):
     else:
         return True  #they lose and we return true
 def blackjack(): 
-    global cards, playerhand, dealerhand
-    #defining variables
-    cards=[]
-    playerhand=[]
-    dealerhand=[]
-    cards=[]
-    nomark=''
-    onemark=' ?'
-    #Creating a list of all cards
-    for i in range (1,11):
-        i+=1
-        if i==10:
-            for u in range(16):
-                cards.append(i)
-        if i!=10:
-            for u in range(4):
-                cards.append(i)
-    #Adding cards into player's hand
-    for i in range(2):
-        playerhand.append(cards[randint(0,51)])
-        dealerhand.append(cards[randint(0,51)])
-    #core gameplay loop
-    while True:
-        usermove=input(f'Your hand is {playerhand}\nand the dealers hand is {dealerhand[0]}{onemark if len(dealerhand)>2 else nomark} ?\nIf you would like to hit please type \'Hit\'\nIf you would like to stand please type \'Stand\'\n').lower()
-        clear('21 Blackjack')
-        if usermove=='hit':
-            if hit(playerhand): #if they bust
-                print(f'Im sorry you have lost with {playerhand} against the dealers {dealerhand}')
-                break
-        calcvalue(dealerhand)
-        if totalvalue<17: #if the dealer hits
-            print('\nThe dealer has chosen to hit\n')
-            if hit(dealerhand): #if they bust
-                print(f'You win, The dealer has lost with {dealerhand}')
-                break
-        else: #if they stand
-            print('the dealer has chosen to stand.')
-            if usermove=='stand': #if both stand
-                calcvalue(playerhand)
-                playervalue=totalvalue
-                calcvalue(dealerhand)
-                dealervalue=totalvalue
-                if playervalue>dealervalue: #theese if statments just calc who wins
-                    print(f'You have won with the hand {playerhand} vs the dealers {dealerhand}')
-                elif playervalue==dealervalue:
-                    print(f'You and the dealer have tied with the hands {playerhand}, {dealerhand}')
-                else:
-                    print(f'You have lost with the hand {playerhand} vs the dealer\'s {dealerhand}')
-                break
+    while playagain==y:
+        global cards, playerhand, dealerhand
+        #defining variables
+        cards=[]
+        playerhand=[]
+        dealerhand=[]
+        cards=[]
+        nomark=''
+        onemark=' ?'
+        #Creating a list of all cards
+        for i in range (1,11):
+            i+=1
+            if i==10:
+                for u in range(16):
+                    cards.append(i)
+            if i!=10:
+                for u in range(4):
+                    cards.append(i)
+        #Adding cards into player's hand
+        for i in range(2):
+            playerhand.append(cards[randint(0,51)])
+            dealerhand.append(cards[randint(0,51)])
+        #core gameplay loop
+        while True:
+            usermove=input(f'Your hand is {playerhand}\nand the dealers hand is {dealerhand[0]}{onemark if len(dealerhand)>2 else nomark} ?\nIf you would like to hit please type \'Hit\'\nIf you would like to stand please type \'Stand\'\n').lower()
+            clear('21 Blackjack')
+            if usermove=='hit':
+                if hit(playerhand): #if they bust
+                    print(f'Im sorry you have lost with {playerhand} against the dealers {dealerhand}')
+                    break
+            calcvalue(dealerhand)
+            if totalvalue<17: #if the dealer hits
+                print('\nThe dealer has chosen to hit\n')
+                if hit(dealerhand): #if they bust
+                    print(f'You win, The dealer has lost with {dealerhand}')
+                    break
+            else: #if they stand
+                print('the dealer has chosen to stand.')
+                if usermove=='stand': #if both stand
+                    calcvalue(playerhand)
+                    playervalue=totalvalue
+                    calcvalue(dealerhand)
+                    dealervalue=totalvalue
+                    if playervalue>dealervalue: #theese if statments just calc who wins
+                        print(f'You have won with the hand {playerhand} vs the dealers {dealerhand}')
+                    elif playervalue==dealervalue:
+                        print(f'You and the dealer have tied with the hands {playerhand}, {dealerhand}')
+                    else:
+                        print(f'You have lost with the hand {playerhand} vs the dealer\'s {dealerhand}')
+                    break
+        playagain=print('\nWould you like to play again? Y/N\n') #asks if they wanna play again
