@@ -1,23 +1,25 @@
 import os
 import time
-import ttt
+import Blackjack
 import connect4
-import RPS
-import PythonWrite
-import mancala
 import hangman
-play=True
+import mancala
+import minesweeper
+import PythonWrite
+import RPS
+import ttt
+import tutorial
+
 #defining the functions
 def clear(gamename):
     os.system('cls')
     print('Game Catalog >' + gamename +'\n')
+
+#tutorial
+tutorial.Tutorial()
+
 #core gameplay loop
-x=0
-while play==True:
-    print('please play this game of tic tac toe twice so that you may understand how to user terminal for our games')
-    time.sleep(2)
-    ttt.tictactoe()
-    ttt.tictactoe()
+while True:
     print("Choose a game from the following list by typing its number.\n")
     print("1: Tic-tac-toe")
     print("2: Connect 4")
@@ -48,4 +50,10 @@ while play==True:
         clear('Hangman')
         hangman.hangman()
     if gamechoice==7:
+        clear('Blackjack')
+        Blackjack.blackjack()
+    if gamechoice==8:
+        clear('Minesweeper')
+        minesweeper.Minesweeper(12, 12, 0.12)
+    else:
         break
