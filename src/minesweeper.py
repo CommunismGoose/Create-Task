@@ -77,6 +77,14 @@ def buttonPress(root, posx, posy, dimx, dimy, board, danger, btn, firstmove, pro
 
     if firstmove[0]:
         copylist(board, createBoard(dimx, dimy, prob))
+
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                addx = posx + j
+                addy = posy + i
+                if addx >= 0 and addx < dimx and addy >= 0 and addy < dimy:
+                    board[addy][addx] = False
+
         totalsafe[0] = sum([row.count(False) for row in board])
         copylist(danger, calcDangerous(board))
         firstmove[0] = False
