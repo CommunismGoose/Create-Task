@@ -1,10 +1,12 @@
 from random import randint
 import os
 
+#clear terminal and print the currect game
 def clear():
     os.system("cls")
     print("Game Catalog > Tic-Tac-Toe\n\n")
 
+#display the tic tac toe board to the user
 def showtttboard(tttboard):
     clear()
     cb = [[" ","X","O"][x] for x in tttboard]
@@ -14,6 +16,7 @@ def showtttboard(tttboard):
     print("-----------")
     print(" "+cb[6]+" | "+cb[7]+" | "+cb[8] + "\n")
 
+#detect if and who won for any board state tb
 def win(tb):
     wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
     for w in wins:
@@ -23,14 +26,18 @@ def win(tb):
                 return look
     return 0
 
+#play tic tac toe
 def tictactoe():
     playagain = True
     while playagain:
         ticb = [0,0,0,0,0,0,0,0,0]
         showtttboard(ticb)
 
+        #game loop
         while True:
             pin = 0
+            
+            #user input
             while True:
                 pin = input("Where? (1 - 9)\n")
                 if pin.isnumeric():
@@ -48,6 +55,7 @@ def tictactoe():
                 print("It's a draw!")
                 break
             
+            #computer's move (random)
             cin = pin
             while ticb[cin] != 0:
                 cin = randint(0,8)
