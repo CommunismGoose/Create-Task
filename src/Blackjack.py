@@ -31,7 +31,8 @@ def hit(whomoving):
     else:
         return True  #they lose and we return true
 def blackjack(): 
-    while playagain==y:
+    playagain='y'
+    while playagain=='y':
         global cards, playerhand, dealerhand
         #defining variables
         cards=[]
