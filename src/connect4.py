@@ -8,5 +8,3 @@ def win(c4b, x, y, turn):
 
 def connect4():
     c4b = [[0,0,0,0,0,0,0]]*6
-
-win(0, 0, 0, 0)
