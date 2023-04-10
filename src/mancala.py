@@ -3,11 +3,11 @@ import time
 mpos=[4,4,4,4,4,4,0,4,4,4,4,4,4,0] #list of values
 lsp='               ' #a long space
 def clear(gamename):
-    time.sleep(.4)
+    time.sleep(.25)
     os.system('cls')
     print(f'Game Catalog > {gamename}\n')
 def printboard():
-    mboard=(f'    {mpos[12]} {mpos[11]} {mpos[10]} {mpos[9]} {mpos[8]} {mpos[7]}\n {mpos[13]}{lsp}{mpos[6]}\n    {mpos[0]} {mpos[1]} {mpos[2]} {mpos[3]} {mpos[4]} {mpos[5]}\n\n')
+    mboard=(f'    |{mpos[12]}|{mpos[11]}|{mpos[10]}|{mpos[9]}|{mpos[8]}|{mpos[7]}|\n|{mpos[13]}|{lsp}|{mpos[6]}|\n    |{mpos[0]}|{mpos[1]}|{mpos[2]}|{mpos[3]}|{mpos[4]}|{mpos[5]}|\n\n')
     print(mboard)
 wins=False
 def wincheck():
@@ -22,10 +22,6 @@ def wincheck():
                 print('Tie!')
             else:
                 print('Player 1 wins!')
-def leaving():
-    global leave
-    if leave:
-        break
 def mancala():
     input('''The rules are as follows
     1:You\'re starting move may only be on your side of the board
@@ -55,11 +51,12 @@ def mancala():
                     if usermove==-1:
                         leave=True
                         break
-                    if usermove>5 or mpos[usermove]==0:
+                    if usermove>5 or usermove<0 or mpos[usermove]==0:
                         print('please select a valid option\n')
                     else:
                         break
-                leaving()
+                if leave:
+                    break
                 if usermove<6 and mpos[usermove]!=0: #if the move is legal
                     temp=mpos[usermove]#temp variable is set to the position
                     mpos[usermove]=0
@@ -85,7 +82,8 @@ def mancala():
                         if i==14: #if current pos is out of index
                             i=0 #equal it to zero
         anothermove=True
-        leaving()
+        if leave:
+            break
         while anothermove==True:
             anothermove=False
             if playerturn==False:
@@ -94,7 +92,7 @@ def mancala():
                     if usermove==0:
                         leave=True
                         break
-                    if usermove<7 or mpos[usermove]==0:
+                    if usermove<7 or usermove>12 or mpos[usermove]==0:
                         print('please select a valid option\n')
                     else:
                         break
@@ -122,5 +120,8 @@ def mancala():
                         i+=1 #current pos 1 higher
                         if i==14: #if current pos is out of index
                             i=0 #equal it to zero
-                leaving()
-        leaving()
+                if leave:
+                    break
+        if leave:
+            break
+mancala()
