@@ -15,6 +15,7 @@ def createBoard(sx, sy, prob):
         board.append(row)
     return board
 
+#print the board for debugging purposes
 def printMines(board):
     letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     dimx = len(board[0])
@@ -26,6 +27,9 @@ def printMines(board):
             t += " X" if board[i][j] else " ."
         print(t)
 
+#takes board as input, returns list of size board that says how many
+#dangerous squares are adjacent horizontally, vertically, or diagonally
+#around each square
 def calcDangerous(board):
     dimx = len(board[0])
     dimy = len(board)
@@ -42,11 +46,13 @@ def calcDangerous(board):
 
     return ret
 
+#just list copy but for 2 dimensions (might not be necessary but I never checked)
 def copylist(l1, l2):
     for i in range(len(l2)):
         for j in range(len(l2[0])):
             l1[i][j] = l2[i][j]
 
+#recursive filling function for zero danger squares, since there's no logic involved
 def fill(posx, posy, dimx, dimy, danger, btn, safeopened):
     if posx < 0 or posx >= dimx or posy < 0 or posy >= dimy:
         return
@@ -72,6 +78,7 @@ def fill(posx, posy, dimx, dimy, danger, btn, safeopened):
             if not (x == y == 0):
                 fill(addx, addy, dimx, dimy, danger, btn, safeopened)
 
+#button press event callback
 def buttonPress(root, posx, posy, dimx, dimy, board, danger, btn, firstmove, prob, totalsafe, safeopened):
     index = posy * dimx + posx
 
@@ -99,7 +106,7 @@ def buttonPress(root, posx, posy, dimx, dimy, board, danger, btn, firstmove, pro
             messagebox.showinfo("You won!", "You found all the safe squares in " + str(wowt) + " seconds, good job! :)")
             root.quit()
 
-
+#turn on and off flags and make the square unclickable
 def toggleFlag(event, x, y, dimx, dimy, flags, btn):
     index = y * dimx + x
     if btn[index]["state"] == tk.DISABLED and not flags[y][x]:
@@ -115,6 +122,7 @@ def toggleFlag(event, x, y, dimx, dimy, flags, btn):
         btn[index]["background"] = "#8888FF"
         btn[index]["text"] = "Flag"
 
+#main minesweeper game function
 def Minesweeper(width, height, prob):
     global flagImage
 

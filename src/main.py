@@ -19,7 +19,18 @@ while play==True:
     time.sleep(2)
     ttt.tictactoe()
     ttt.tictactoe()
-    gamechoice=int(input('choose a game from the following list by typing its number\n\n1:Tic-Tac-Toe\n2:Connect 4\n3:Rock-Paper-Sciscors\n4:Checkers\n5:Fractal Game\n6:Python Write\n7:Mancala\n8:Hangman\n9:Stop the program\n'))
+    print("Choose a game from the following list by typing its number.\n")
+    print("1: Tic-tac-toe")
+    print("2: Connect 4")
+    print("3: Rock-paper-scissors")
+    print("4: Python Write")
+    print("5: Mancala")
+    print("6: Hangman")
+    print("7: Blackjack")
+    print("8: Minesweeper")
+    print("9: Ultimate Tic-tac-toe")
+    print("10: End program")
+    gamechoice=int(input())
     if gamechoice==1:
         clear('Tic-Tac-Toe')
         ttt.tictactoe()
@@ -30,19 +41,13 @@ while play==True:
         clear('Rock-Paper-Sciscors')
         RPS.rps()
     if gamechoice==4:
-        clear('Checkers')
-        checkers.checkers()
-    if gamechoice==5:
-        clear('fractal game')
-        print('god pls help the man who is going to write this code')
-    if gamechoice==6:
         clear('Python Write')
         PythonWrite.PythonWrite()
-    if gamechoice==7:
+    if gamechoice==5:
         clear('Mancala')
         mancala.mancala()
-    if gamechoice==8:
+    if gamechoice==6:
         clear('Hangman')
         hangman.hangman()
-    if gamechoice==9:
+    if gamechoice==7:
         break
