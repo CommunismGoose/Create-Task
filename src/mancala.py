@@ -117,11 +117,10 @@ def mancala():
                             wincheck()
                             if wins==True:
                                 break
-                        i+=1 #current pos 1 higher
+                        i+=1 
                         if i==14: #if current pos is out of index
-                            i=0 #equal it to zero
+                            i=0 #
                 if leave:
                     break
         if leave:
             break
-mancala()

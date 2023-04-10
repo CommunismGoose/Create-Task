@@ -3,7 +3,6 @@ import time
 import ttt
 import connect4
 import RPS
-import checkers
 import PythonWrite
 import mancala
 import hangman
@@ -28,8 +27,7 @@ while play==True:
     print("6: Hangman")
     print("7: Blackjack")
     print("8: Minesweeper")
-    print("9: Ultimate Tic-tac-toe")
-    print("10: End program")
+    print("9: End program")
     gamechoice=int(input())
     if gamechoice==1:
         clear('Tic-Tac-Toe')
