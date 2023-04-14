@@ -15,8 +15,9 @@ def clear(gamename):
     os.system('cls')
     print('Game Catalog >' + gamename +'\n')
 
-#tutorial
-tutorial.Tutorial()
+input("First, learn how to use the terminal [enter]")
+ttt.tictactoe()  
+ttt.tictactoe()
 
 #core gameplay loop
 while True:

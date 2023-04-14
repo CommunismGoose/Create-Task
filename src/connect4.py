@@ -7,10 +7,10 @@ def clear(text):
 
 def win(c4b, x, y, turn):
     adj = [[-3,-2,-1,0],[-2,-1,0,1],[-1,0,1,2],[0,1,2,3],[3,2,1,0],[2,1,0,-1],[1,0,-1,-2],[0,1,2,3],[0,0,0,0]]
-    winx = [0]*3 + [1]*3 + [2]*3 + [3]*3 + [4]*4
-    winy = [0,8,4,1,8,5,2,8,6,3,8,7,0,1,2,3]
+    winx = [0,1,2,3,8,8,8,8]
+    winy = [8,8,8,8,0,1,2,3]
     
-    for i in range(16):
+    for i in range(len(winx)):
         ox = adj[winx[i]]
         oy = adj[winy[i]]
 
@@ -37,7 +37,7 @@ def showboard(c4b):
      for i in range(6):
           line = [c4b[x][5-i] for x in range(7)]
           text = [markers[x] for x in line]
-          print(" ".join(text))
+          print("   ".join(text))
           print("")
 
 def connect4():
