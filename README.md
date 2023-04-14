@@ -4,9 +4,11 @@ We have written several games in python
 # Our Plans
 We plan to make all of the following games, as we complete or finish more of it we will update with a completed next to the name.
 
+Tutorial - Active Development,
+
 Tic-Tac-Toe - Done,
 
-Ultimate Tic-Tac-Toe - Active Development,
+Ultimate Tic-Tac-Toe - Canceled,
 
 Connect 4 - Active Development,
 
