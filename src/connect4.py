@@ -35,10 +35,6 @@ def win(c4b):
             else:
                 counter = 0
                 check = current
-             
-            
-              
-
 
     if not 0 in (c4b[0]+c4b[1]+c4b[2]+c4b[3]+c4b[4]+c4b[5]+c4b[6]):
          return 3
@@ -99,5 +95,3 @@ def connect4():
             break
 
         turn = (2 if (turn == 1) else 1)
-
-connect4()

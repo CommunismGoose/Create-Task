@@ -16,55 +16,71 @@ def showtttboard(tttboard):
     print("-----------")
     print(" "+cb[6]+" | "+cb[7]+" | "+cb[8] + "\n")
 
-#detect if and who won for any board state tb
-def win(tb):
+def win(tb, turn, tu):
     wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
     for w in wins:
-        look = tb[w[0]]
-        if look == tb[w[1]] == tb[w[2]]:
-            if look != 0:
-                return look
+        if turn == tb[w[0]] == tb[w[1]] == tb[w[2]]:
+            if turn == tu:
+                clear()
+                showtttboard(tb)
+                print("You won!\n")
+                return 1
+            elif turn == (2 if tu == 1 else 1):
+                clear()
+                showtttboard(tb)
+                print("You lost...\n")
+                return 1
+
+    if not 0 in tb:
+        clear()
+        showtttboard(tb)
+        print("It's a draw.\n")
+        return 1
+
+    clear()
+    showtttboard(tb)
     return 0
 
 #play tic tac toe
-def tictactoe():
+def tictactoe(t, pa):
+    tu = 0
+    if t == "x":
+        tu = 1
+    else:
+        tu = 2
+
     playagain = True
     while playagain:
         ticb = [0,0,0,0,0,0,0,0,0]
         showtttboard(ticb)
 
+        turn = tu
         #game loop
         while True:
             pin = 0
-            
-            #user input
-            while True:
-                pin = input("Where? (1 - 9)\n")
-                if pin.isnumeric():
-                    pin = int(pin[0]) - 1
-                    if pin >= 0 and pin < 9:
-                        if ticb[pin] == 0:
-                            break
 
-            ticb[pin] = 1
-            showtttboard(ticb)
-            if win(ticb) == 1:
-                print("You won!")
-                break
-            if not 0 in ticb:
-                print("It's a draw!")
+            if turn == 1: #player move
+                while True:
+                    pin = input("Where? (1 - 9)\n")
+                    if pin.isnumeric():
+                        pin = int(pin[0]) - 1
+                        if pin >= 0 and pin < 9:
+                            if ticb[pin] == 0:
+                                break
+            else: #computer move
+                while True:
+                    pin = randint(0, 8)
+                    if ticb[pin] == 0:
+                        break          
+
+            ticb[pin] = turn if (tu == 1) else (1 if turn == 2 else 2)
+            if win(ticb, turn, tu) == 1:
+                input("[enter]")
                 break
             
-            #computer's move (random)
-            cin = pin
-            while ticb[cin] != 0:
-                cin = randint(0,8)
-            
-            ticb[cin] = 2
-            showtttboard(ticb)
-            if win(ticb) == 2:
-                print("You lost...")
-                break
+            turn = 2 if turn == 1 else 1
 
-        playagain = input("Play again?\n").lower() in ["y", "yes"]
-
+        if pa:
+            playagain = input("Play again?\n").lower() in ["y", "yes"]
+        else:
+            break

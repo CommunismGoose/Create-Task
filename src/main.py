@@ -1,5 +1,4 @@
 import os
-import time
 import Blackjack
 import connect4
 import hangman
@@ -8,7 +7,7 @@ import minesweeper
 import PythonWrite
 import RPS
 import ttt
-import tutorial
+from random import randint
 
 #defining the functions
 def clear(gamename):
@@ -16,11 +15,12 @@ def clear(gamename):
     print('Game Catalog >' + gamename +'\n')
 
 input("First, learn how to use the terminal [enter]")
-ttt.tictactoe()  
-ttt.tictactoe()
+ttt.tictactoe("x", False)  
+ttt.tictactoe("o", False)
 
 #core gameplay loop
 while True:
+    clear("")
     print("Choose a game from the following list by typing its number.\n")
     print("1: Tic-tac-toe")
     print("2: Connect 4")
@@ -34,26 +34,26 @@ while True:
     gamechoice=int(input())
     if gamechoice==1:
         clear('Tic-Tac-Toe')
-        ttt.tictactoe()
-    if gamechoice==2:
+        ttt.tictactoe("x" if randint(0, 1) == 0 else "o", True)
+    elif gamechoice==2:
         clear('Connect 4')
         connect4.connect4()
-    if gamechoice==3:
+    elif gamechoice==3:
         clear('Rock-Paper-Sciscors')
         RPS.rps()
-    if gamechoice==4:
-        clear('Python Write')
+    elif gamechoice==4:
+        clear('Pytype')
         PythonWrite.PythonWrite()
-    if gamechoice==5:
+    elif gamechoice==5:
         clear('Mancala')
         mancala.mancala()
-    if gamechoice==6:
+    elif gamechoice==6:
         clear('Hangman')
         hangman.hangman()
-    if gamechoice==7:
+    elif gamechoice==7:
         clear('Blackjack')
         Blackjack.blackjack()
-    if gamechoice==8:
+    elif gamechoice==8:
         clear('Minesweeper')
         minesweeper.Minesweeper(12, 12, 0.12)
     else:
