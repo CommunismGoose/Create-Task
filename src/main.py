@@ -15,8 +15,8 @@ def clear(gamename):
     print('Game Catalog >' + gamename +'\n')
 
 input("First, learn how to use the terminal [enter]")
-ttt.tictactoe("x", False)  
-ttt.tictactoe("o", False)
+ttt.tictactoe(False, "x")
+ttt.tictactoe(False, "o")
 
 #core gameplay loop
 while True:
@@ -34,7 +34,10 @@ while True:
     gamechoice=int(input())
     if gamechoice==1:
         clear('Tic-Tac-Toe')
-        ttt.tictactoe("x" if randint(0, 1) == 0 else "o", True)
+        inp = "x"
+        if randint(0,1) == 1:
+            inp = "o"
+        ttt.tictactoe(True, inp)
     elif gamechoice==2:
         clear('Connect 4')
         connect4.connect4()
