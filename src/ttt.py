@@ -9,7 +9,13 @@ def clear():
 #display the tic tac toe board to the user
 def showtttboard(tttboard, pside):
     clear()
-    disp = [" ","X","O"] if pside else [" ", "O", "X"]
+
+    disp = []
+    if pside:
+        disp = [" ","X","O"]
+    else:
+        disp = [" ", "O", "X"]
+
     cb = [disp[x] for x in tttboard]
     print(" "+cb[0]+" | "+cb[1]+" | "+cb[2])
     print("-----------")
@@ -43,8 +49,11 @@ def win(tb, turn, pside):
 
 #play tic tac toe
 def tictactoe(pa, side):
-    pside = side == "x"
-    tn = 1 if pside else 2
+    pside = False
+    tn = 2
+    if side == "x":
+        pside = True
+        tn = 1
 
     playagain = True
     while playagain:
