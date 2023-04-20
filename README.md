@@ -10,7 +10,7 @@ Tic-Tac-Toe - Done,
 
 Ultimate Tic-Tac-Toe - Canceled,
 
-Connect 4 - Active Development,
+Connect 4 - Done,
 
 Rock Paper Sciscors - Done,
 
